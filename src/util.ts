@@ -79,6 +79,8 @@ export const processExpression = (expression: string) => {
       output += " * ";
     } else if (
       !isOperator(element) &&
+      element !== "(" &&
+      element !== ")" &&
       isNaN(Number(next)) &&
       !isFunction(next) &&
       !isOperator(next) &&
@@ -183,7 +185,7 @@ export const RPNEval = (input: string[], x:number): number => {
         stack.push(left ** right);
         break;
       default:
-        throw new Error(`Invalid operator ${token}`);
+        return;
     }
   };
 
